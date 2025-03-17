@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: v3-1
+      author: test
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: users_goals
+      changes:
+        - createTable:
+            tableName: users_goals
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    unique: true
+                    foreignKeyName: user_id_fk
+                    referencedTableName: users
+                    referencedColumnNames: id
+              - column:
+                  name: goal_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: goal_id_fk
+                    referencedTableName: goals
+                    referencedColumnNames: id

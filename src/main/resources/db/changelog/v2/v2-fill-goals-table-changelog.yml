@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: v2-2
+      author: test
+      preConditions:
+        - onFail: MARK_RAN
+        - sqlCheck:
+            expectedResult: "0"
+            sql: "SELECT COUNT(*) FROM goals"
+      changes:
+        - insert:
+            tableName: goals
+            columns:
+              - column:
+                  name: name
+                  value: loss
+        - insert:
+            tableName: goals
+            columns:
+              - column:
+                  name: name
+                  value: increase
+        - insert:
+            tableName: goals
+            columns:
+              - column:
+                  name: name
+                  value: hold

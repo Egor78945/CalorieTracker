@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: ./v2-create-goals-table-changelog.yml
+      relativeToChangelogFile: true
+  - include:
+      file: ./v2-fill-goals-table-changelog.yml
+      relativeToChangelogFile: true
