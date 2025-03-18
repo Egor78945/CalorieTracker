@@ -45,3 +45,9 @@ databaseChangeLog:
                   type: int
                   constraints:
                     nullable: false
+              - column:
+                  name: gender
+                  type: varchar(1)
+                  constraints:
+                    nullable: false
+
