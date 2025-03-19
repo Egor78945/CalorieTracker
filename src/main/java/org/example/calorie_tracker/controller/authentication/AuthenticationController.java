@@ -25,6 +25,6 @@ public class AuthenticationController {
 
     @PostMapping("/registration")
     public ResponseEntity<String> registration(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO) {
-        return ResponseEntity.ok(Map.of("id", userService.save(UserMapper.mapTo(userRegistrationDTO)).getId()).toString());
+        return ResponseEntity.ok(Long.toString(userService.save(UserMapper.mapTo(userRegistrationDTO)).getId()));
     }
 }
