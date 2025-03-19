@@ -13,6 +13,7 @@ public class UserMapper {
                 .setWeight(userRegistrationDTO.weight())
                 .setHeight(userRegistrationDTO.height())
                 .setGender(userRegistrationDTO.gender())
+                .setGoalId(GoalMapper.mapTo(userRegistrationDTO.goal()).getId())
                 .build();
     }
 }

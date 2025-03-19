@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: v4-1
+      id: v3-1
       author: test
       preConditions:
         - onFail: MARK_RAN

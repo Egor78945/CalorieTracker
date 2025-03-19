@@ -23,6 +23,8 @@ public class User {
     private int height;
     @Column(name = "gender")
     private char gender;
+    @Column(name = "goal_id")
+    private long goalId;
 
     public User(Builder builder) {
         this.gender = builder.gender;
@@ -31,6 +33,7 @@ public class User {
         this.age = builder.age;
         this.name = builder.name;
         this.email = builder.email;
+        this.goalId = builder.goalId;
     }
 
     public User() {
@@ -47,6 +50,7 @@ public class User {
         private int weight;
         private int height;
         private char gender;
+        private long goalId;
 
         public Builder() {
         }
@@ -76,6 +80,10 @@ public class User {
         }
         public Builder setGender(char gender){
             this.gender = gender;
+            return this;
+        }
+        public Builder setGoalId(long goalId){
+            this.goalId = goalId;
             return this;
         }
         public User build(){

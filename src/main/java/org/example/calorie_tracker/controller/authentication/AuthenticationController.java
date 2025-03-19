@@ -1,15 +1,16 @@
 package org.example.calorie_tracker.controller.authentication;
 
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.example.calorie_tracker.controller.authentication.advice.handler.AuthenticationControllerExceptionHandler;
 import org.example.calorie_tracker.model.user.dto.UserRegistrationDTO;
 import org.example.calorie_tracker.service.user.UserService;
-import org.example.calorie_tracker.service.user.authentication.AuthenticationService;
+import org.example.calorie_tracker.service.user.UserAuthenticationService;
 import org.example.calorie_tracker.service.user.mapper.UserMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
@@ -18,12 +19,12 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
     private final UserService userService;
 
-    public AuthenticationController(AuthenticationService userService) {
+    public AuthenticationController(UserAuthenticationService userService) {
         this.userService = userService;
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<Long> registration(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO) {
-        return ResponseEntity.ok(userService.saveUser(UserMapper.mapTo(userRegistrationDTO)));
+    public ResponseEntity<String> registration(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO) {
+        return ResponseEntity.ok(Map.of("id", userService.save(UserMapper.mapTo(userRegistrationDTO)).getId()).toString());
     }
 }

@@ -1,4 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: ./v4-create-dishes-table-changelog.yml
-      relativeToChangelogFile: true

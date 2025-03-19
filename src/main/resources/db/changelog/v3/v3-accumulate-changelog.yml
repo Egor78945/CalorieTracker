@@ -1,4 +1,4 @@
 databaseChangeLog:
   - include:
-      file: ./v3-create-users-goals-table-changelog.yml
+      file: ./v3-create-dishes-table-changelog.yml
       relativeToChangelogFile: true

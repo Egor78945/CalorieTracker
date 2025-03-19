@@ -10,9 +10,13 @@ public abstract class UserService {
         this.userRepository = userRepository;
     }
 
-    public abstract long saveUser(User user);
+    public abstract User save(User user);
 
     public boolean existsUserByEmail(String email) {
         return userRepository.existsUserByEmail(email);
+    }
+
+    protected User doSave(User user) {
+        return userRepository.save(user);
     }
 }

@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: v1-1
+      id: v2-1
       author: test
       preConditions:
         - onFail: MARK_RAN
@@ -50,4 +50,12 @@ databaseChangeLog:
                   type: varchar(1)
                   constraints:
                     nullable: false
+              - column:
+                  name: goal_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: user_goal_id_fk
+                    referencedTableName: goals
+                    referencedColumnNames: id
 

@@ -1,28 +1,27 @@
-package org.example.calorie_tracker.service.user.authentication;
+package org.example.calorie_tracker.service.user;
 
 import org.example.calorie_tracker.model.user.entity.User;
 import org.example.calorie_tracker.repository.UserRepository;
-import org.example.calorie_tracker.service.user.UserService;
 import org.example.calorie_tracker.service.user.validation.UserValidationService;
 import org.example.calorie_tracker.service.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthenticationService extends UserService {
+public class UserAuthenticationService extends UserService {
     private final ValidationService<User> userValidationService;
 
-    public AuthenticationService(UserRepository userRepository, UserValidationService userValidationService) {
+    public UserAuthenticationService(UserRepository userRepository, UserValidationService userValidationService) {
         super(userRepository);
         this.userValidationService = userValidationService;
     }
 
     @Override
-    public long saveUser(User user) {
+    public User save(User user) {
         if(!userValidationService.isValid(user)){
             throw new RuntimeException("user data is invalid");
         } else if(userRepository.existsUserByEmail(user.getEmail())){
             throw new RuntimeException("email is busy");
         }
-        return userRepository.save(user).getId();
+        return doSave(user);
     }
 }
