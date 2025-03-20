@@ -26,34 +26,34 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: calorie
-                  type: double
+                  type: int
                   constraints:
                     nullable: false
               - column:
                   name: protein
-                  type: double
+                  type: int
                   constraints:
                     nullable: false
               - column:
                   name: fat
-                  type: double
+                  type: int
                   constraints:
                     nullable: false
               - column:
                   name: carbohydrate
-                  type: double
+                  type: int
                   constraints:
                     nullable: false
               - column:
                   name: date
-                  type: timestamp
+                  type: date
                   constraints:
                     nullable: false
               - column:
-                  name: user_id
-                  type: bigint
+                  name: user_email
+                  type: varchar(150)
                   constraints:
                     nullable: false
-                    foreignKeyName: user_id_fk
+                    foreignKeyName: user_email_fk
                     referencedTableName: users
-                    referencedColumnNames: id
+                    referencedColumnNames: email

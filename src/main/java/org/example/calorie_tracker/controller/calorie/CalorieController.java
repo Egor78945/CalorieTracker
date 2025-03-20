@@ -1,26 +1,27 @@
 package org.example.calorie_tracker.controller.calorie;
 
+import org.example.calorie_tracker.controller.advice.handler.GlobalControllerExceptionHandler;
 import org.example.calorie_tracker.service.calorie.router.CalorieServiceRouter;
-import org.example.calorie_tracker.service.user.UserDetailsService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/calorie")
+@GlobalControllerExceptionHandler
 public class CalorieController {
     private final CalorieServiceRouter calorieServiceRouter;
-    private final UserDetailsService userDetailsService;
 
-    public CalorieController(CalorieServiceRouter calorieServiceRouter, UserDetailsService userDetailsService) {
+    public CalorieController(CalorieServiceRouter calorieServiceRouter) {
         this.calorieServiceRouter = calorieServiceRouter;
-        this.userDetailsService = userDetailsService;
     }
 
-    @GetMapping("/recommended")
-    public ResponseEntity<String> getRecommendedCaloriePerDay(@RequestParam("email") String email){
-        return ResponseEntity.ok(Integer.toString(calorieServiceRouter.getCalorieServiceByCalorieGoal(userDetailsService.getCalorieGoalByUserEmail(email)).getCaloriePerDayForUserByEmail(email)));
+    @GetMapping("/recommended/{email}")
+    public ResponseEntity<String> getRecommendedCaloriePerDay(@PathVariable("email") String email){
+        return ResponseEntity.ok(Integer.toString(calorieServiceRouter.getCalorieServiceByUserEmail(email).getRecommendedCaloriePerDayForUserByEmail(email)));
+    }
+
+    @GetMapping("/check/{email}")
+    public ResponseEntity<Boolean> caloriesIsInLimits(@PathVariable("email") String email){
+        return ResponseEntity.ok(calorieServiceRouter.getCalorieServiceByUserEmail(email).calorieIsInRecommendedLimitByEmail(email));
     }
 }

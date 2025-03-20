@@ -27,6 +27,7 @@ public class User {
     private long goalId;
 
     public User(Builder builder) {
+        this.id = builder.id;
         this.gender = builder.gender;
         this.height = builder.height;
         this.weight = builder.weight;
@@ -44,6 +45,7 @@ public class User {
     }
 
     public static class Builder{
+        private long id;
         private String email;
         private String name;
         private int age;
@@ -52,7 +54,12 @@ public class User {
         private char gender;
         private long goalId;
 
-        public Builder() {
+        private Builder() {
+        }
+
+        public Builder setId(long id){
+            this.id = id;
+            return this;
         }
 
         public Builder setEmail(String email){

@@ -1,6 +1,6 @@
 package org.example.calorie_tracker.controller.details;
 
-import org.example.calorie_tracker.controller.details.advice.handler.DetailsControllerExceptionHandler;
+import org.example.calorie_tracker.controller.advice.handler.GlobalControllerExceptionHandler;
 import org.example.calorie_tracker.service.user.UserDetailsService;
 import org.example.calorie_tracker.service.user.mapper.GoalMapper;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/details")
-@DetailsControllerExceptionHandler
+@GlobalControllerExceptionHandler
 public class DetailsController {
     private final UserDetailsService userDetailsService;
 
