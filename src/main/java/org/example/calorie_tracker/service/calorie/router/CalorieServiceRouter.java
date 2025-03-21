@@ -1,5 +1,6 @@
 package org.example.calorie_tracker.service.calorie.router;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.calorie_tracker.enumeration.goal.CalorieGoal;
 import org.example.calorie_tracker.repository.UserRepository;
 import org.example.calorie_tracker.service.calorie.CalorieHoldService;
@@ -15,14 +16,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@Tag(name = "Calorie service router", description = "Маршрутизатор, который распределяет запросы пользователей по сервисам, в зависимости от их цели")
 public class CalorieServiceRouter {
     private final Map<CalorieGoal, CalorieService> calorieServiceRouter;
     private final UserDetailsService userDetailsService;
-    private final DishRecorderService dishRecorderService;
 
     public CalorieServiceRouter(UserRepository userRepository, UserDetailsService userDetailsService, DishRecorderService dishRecorderService) {
         this.userDetailsService = userDetailsService;
-        this.dishRecorderService = dishRecorderService;
 
         calorieServiceRouter = new HashMap<>();
         calorieServiceRouter.put(CalorieGoal.LOSS, new CalorieLossService(userRepository, dishRecorderService));

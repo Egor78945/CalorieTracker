@@ -1,11 +1,13 @@
 package org.example.calorie_tracker.model.user.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Table(name = "users")
 @Data
+@Schema(name = "User", description = "Entity пользователя")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

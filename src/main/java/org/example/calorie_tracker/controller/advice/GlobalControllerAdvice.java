@@ -1,5 +1,6 @@
 package org.example.calorie_tracker.controller.advice;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.example.calorie_tracker.controller.advice.handler.GlobalControllerExceptionHandler;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 @ControllerAdvice(annotations = GlobalControllerExceptionHandler.class)
 @Slf4j
+@Tag(name = "Global controller advice", description = "Общий controllerAdvice")
 public class GlobalControllerAdvice {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> validationExceptionHandler(MethodArgumentNotValidException e) {

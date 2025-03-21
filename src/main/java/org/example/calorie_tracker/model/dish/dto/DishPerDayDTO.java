@@ -1,9 +1,11 @@
 package org.example.calorie_tracker.model.dish.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.example.calorie_tracker.model.dish.entity.Dish;
 
 import java.util.List;
 
+@Schema(name = "Dish per day DTO", description = "DTO, представляющий сумму калорий всех блюд из списка")
 public class DishPerDayDTO {
     private int calorie;
     private List<Dish> dishes;

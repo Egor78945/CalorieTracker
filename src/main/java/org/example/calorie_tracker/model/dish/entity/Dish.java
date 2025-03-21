@@ -1,5 +1,6 @@
 package org.example.calorie_tracker.model.dish.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,6 +9,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "dishes")
 @Data
+@Schema(name = "Dish", description = "Entity блюда")
 public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

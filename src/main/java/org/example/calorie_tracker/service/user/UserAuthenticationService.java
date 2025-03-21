@@ -1,5 +1,6 @@
 package org.example.calorie_tracker.service.user;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.calorie_tracker.model.user.entity.User;
 import org.example.calorie_tracker.repository.UserRepository;
 import org.example.calorie_tracker.service.user.validation.UserValidationService;
@@ -7,6 +8,7 @@ import org.example.calorie_tracker.service.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 @Service
+@Tag(name = "User authentication service", description = "Сервис, проводящий аутентификацию пользователей")
 public class UserAuthenticationService extends UserService {
     private final ValidationService<User> userValidationService;
 

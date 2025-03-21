@@ -1,12 +1,12 @@
 package org.example.calorie_tracker.service.user.validation;
 
-import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.calorie_tracker.model.user.entity.User;
 import org.example.calorie_tracker.service.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+@Tag(name = "User validation service", description = "Валидатор пользователей")
 public class UserValidationService implements ValidationService<User> {
     @Override
     public boolean isValid(User user) {
