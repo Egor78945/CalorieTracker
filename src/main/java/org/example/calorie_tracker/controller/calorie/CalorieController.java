@@ -31,8 +31,8 @@ public class CalorieController {
             }),
             @ApiResponse(responseCode = "400", description = "Произошла ошибка во время получения количества калорий")}
     )
-    public ResponseEntity<String> getRecommendedCaloriePerDay(@PathVariable("email") @Parameter(name = "email", description = "email пользователя") String email) {
-        return ResponseEntity.ok(Integer.toString(calorieServiceRouter.getCalorieServiceByUserEmail(email).getRecommendedCaloriePerDayForUserByEmail(email)));
+    public ResponseEntity<Integer> getRecommendedCaloriePerDay(@PathVariable("email") @Parameter(name = "email", description = "email пользователя") String email) {
+        return ResponseEntity.ok(calorieServiceRouter.getCalorieServiceByUserEmail(email).getRecommendedCaloriePerDayForUserByEmail(email));
     }
 
     @GetMapping("/check/{email}")

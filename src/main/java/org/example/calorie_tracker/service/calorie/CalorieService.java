@@ -30,6 +30,6 @@ public abstract class CalorieService {
     public boolean calorieIsInRecommendedLimitByEmail(String email){
         int currentCalorieSum = dishRecorderService.getCurrentCalorieSumPerLastDayByEmail(email);
         int recommendedCalorieSum = getRecommendedCaloriePerDayForUserByEmail(email);
-        return recommendedCalorieSum - currentCalorieSum >= 0 && recommendedCalorieSum - currentCalorieSum <= 50;
+        return (recommendedCalorieSum - currentCalorieSum >= 0 && recommendedCalorieSum - currentCalorieSum <= 100) || (currentCalorieSum - recommendedCalorieSum >= 0 && currentCalorieSum - recommendedCalorieSum <= 100);
     }
 }
