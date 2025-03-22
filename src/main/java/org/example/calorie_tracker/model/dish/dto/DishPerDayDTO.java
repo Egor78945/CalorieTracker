@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import org.example.calorie_tracker.model.dish.entity.Dish;
 
 import java.util.List;
+import java.util.Objects;
 
 @Schema(name = "Dish per day DTO", description = "DTO, представляющий сумму калорий всех блюд из списка")
 public class DishPerDayDTO {
@@ -29,5 +30,17 @@ public class DishPerDayDTO {
 
     public void setDishes(List<Dish> dishes) {
         this.dishes = dishes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        DishPerDayDTO that = (DishPerDayDTO) o;
+        return calorie == that.calorie && Objects.equals(dishes, that.dishes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(calorie, dishes);
     }
 }

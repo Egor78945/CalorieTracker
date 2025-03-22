@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -65,6 +66,6 @@ public class DishController {
             @ApiResponse(responseCode = "400", description = "Произошла ошибка во время получения списка съеденых блюд")}
     )
     public ResponseEntity<DishPerDayDTO> getDishesListPerDay(@PathVariable("email") @Parameter(name = "email", description = "email пользователя") String email){
-        return ResponseEntity.ok(dishService.getDishPerDayByEmail(email));
+        return ResponseEntity.ok(dishService.getDishPerDayByEmail(email, LocalDate.now()));
     }
 }

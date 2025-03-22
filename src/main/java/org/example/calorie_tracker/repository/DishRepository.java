@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Tag(name = "Dish repository", description = "Репозиторий таблицы блюд")
@@ -26,5 +27,5 @@ public interface DishRepository extends JpaRepository<Dish, Long> {
             order by date
             """)
     @Operation(description = "Получить список всех блюд пользователя, съеденных за сегодня")
-    List<Dish> findAllByUserEmailPerLastDay(String email, LocalDate now);
+    Optional<List<Dish>> findAllByUserEmailPerLastDay(String email, LocalDate now);
 }

@@ -6,6 +6,8 @@ import org.example.calorie_tracker.model.user.entity.User;
 import org.example.calorie_tracker.repository.UserRepository;
 import org.example.calorie_tracker.service.dish.DishRecorderService;
 
+import java.time.LocalDate;
+
 @Tag(name = "Calorie service", description = "Сервис учёта и манипуляции информации о калориях")
 public abstract class CalorieService {
     protected final UserRepository userRepository;
@@ -28,7 +30,7 @@ public abstract class CalorieService {
 
     @Operation(description = "Проверить, находится ли количество калорий, которое пользователь употребил сегодня в рекомендованных пределах")
     public boolean calorieIsInRecommendedLimitByEmail(String email){
-        int currentCalorieSum = dishRecorderService.getCurrentCalorieSumPerLastDayByEmail(email);
+        int currentCalorieSum = dishRecorderService.getCurrentCalorieSumPerDayByEmail(email, LocalDate.now());
         int recommendedCalorieSum = getRecommendedCaloriePerDayForUserByEmail(email);
         return (recommendedCalorieSum - currentCalorieSum >= 0 && recommendedCalorieSum - currentCalorieSum <= 100) || (currentCalorieSum - recommendedCalorieSum >= 0 && currentCalorieSum - recommendedCalorieSum <= 100);
     }

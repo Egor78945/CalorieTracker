@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -56,17 +57,17 @@ public class DishRecorderService extends DishService {
     }
 
     @Operation(description = "Получить сумму калорий и список блюд, которые пользователь съел в последний день")
-    public DishPerDayDTO getDishPerDayByEmail(String email){
+    public DishPerDayDTO getDishPerDayByEmail(String email, LocalDate day){
         throwIfUserNotFoundByEmail(email);
-        List<Dish> dishes = dishRepository.findAllByUserEmailPerLastDay(email, LocalDate.now());
+        List<Dish> dishes = dishRepository.findAllByUserEmailPerLastDay(email, day).orElseGet(ArrayList::new);
         int calorieSum = getDishesSumCalorie(dishes);
         return new DishPerDayDTO(calorieSum, dishes);
     }
 
     @Operation(description = "Получить сумму калорий всех блюд, съеденных за сегодня")
-    public int getCurrentCalorieSumPerLastDayByEmail(String email){
+    public int getCurrentCalorieSumPerDayByEmail(String email, LocalDate day){
         throwIfUserNotFoundByEmail(email);
-        List<Dish> dishes = dishRepository.findAllByUserEmailPerLastDay(email, LocalDate.now());
+        List<Dish> dishes = dishRepository.findAllByUserEmailPerLastDay(email, day).orElseGet(ArrayList::new);
         return getDishesSumCalorie(dishes);
     }
 
